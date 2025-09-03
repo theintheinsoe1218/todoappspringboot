@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+  <!-- <div th:insert="~{includes/partials :: head}"></div> -->
+   <div th:replace="~{includes/partials :: head}"></div>
+  <body>
+
+    
+        <div th:replace="~{includes/nav :: nav}"></div>
+        <div class="container">
+            <div class="d-flex justify-content-between">
+
+                <h3 class="mt-5 mb-2">Todos</h3>
+                <span class="mt-5 mb-2">
+                    <a href="/todos/add" class="btn btn-sm btn-success">
+                        <i class="fa fa-plus"></i> Add
+                    </a>
+                </span>
+            </div>
+             
+            <th:block th:each="todo : ${todos}">
+
+               <div class="card mt-2">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9">
+    
+                                <span th:text="${todo.title}">Default</span>
+                            </div>
+                            <div class="col-md-3 d-flex justify-content-end">
+                                <a th:href="@{/todos/edit/{id}(id=1)}" class="btn btn-sm btn-warning me-2">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a th:href="@{/todos/delete/{id}(id=1)}" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </th:block>
+        </div>
+  
+    
+
+
+    
+
+
+
+
+
+    <div th:replace="~{includes/partials :: footer}"></div>
+  </body>
+</html>
