@@ -10,13 +10,27 @@
             <div class="d-flex justify-content-between">
 
                 <h3 class="mt-5 mb-2">Todos</h3>
-                <span class="mt-5 mb-2">
-                    <a href="/todos/add" class="btn btn-sm btn-success">
-                        <i class="fa fa-plus"></i> Add
-                    </a>
-                </span>
+                <div class="mt-5 mb-2 d-flex justify-content-between">
+                    <span class="me-3">
+                        <a href="/todos/add" class="btn btn-sm btn-success">
+                            <i class="fa fa-plus"></i> Add
+                        </a>
+                    </span>
+                    <div class="dropdown ">
+                        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="/todos">All</a></li>
+                            <li><a class="dropdown-item" href="/todos/filter/true">Completed</a></li>
+                            <li><a class="dropdown-item" href="/todos/filter/false">UnComplete</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
             </div>
-             
+            <!-- th:attr="class=${todo.completed? 'btn btn-sm btn-secondary me-2':'btn btn-sm btn-success me-2'}" -->
+
             <th:block th:each="todo : ${todos}">
 
                <div class="card mt-2">
@@ -27,10 +41,15 @@
                                 <span th:text="${todo.title}">Default</span>
                             </div>
                             <div class="col-md-3 d-flex justify-content-end">
-                                <a th:href="@{/todos/edit/{id}(id=1)}" class="btn btn-sm btn-warning me-2">
+                                <a th:href="@{/todos/toggle/{id}(id=${todo.id})}" class="btn btn-sm me-2"
+                                th:classappend="${todo.completed? 'btn-secondary ':'btn-success'}"
+                                >
+                                    <i class="fa fa-check"></i>
+                                </a>
+                                <a th:href="@{/todos/edit/{id}(id=${todo.id})}" class="btn btn-sm btn-warning me-2">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a th:href="@{/todos/delete/{id}(id=1)}" class="btn btn-sm btn-danger">
+                                <a th:href="@{/todos/delete/{id}(id=${todo.id})}" class="btn btn-sm btn-danger">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>

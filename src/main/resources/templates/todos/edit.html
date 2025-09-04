@@ -21,14 +21,14 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <form th:action="@{/todos/edit/{id}(id=1)}" method="POST">
+                        <form th:action="@{/todos/edit/{id}(id=${todo.id})}" method="POST">
                             <div class="mb-3">
                                 <label for="title" class="form-label">Todo</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Todo content">
+                                <input type="text" class="form-control" id="title" name="title" th:value="${todo.title}">
                             </div>
                             
                             <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary mb-3">Add </button>
+                                <button type="submit" class="btn btn-primary mb-3">Update </button>
                             </div>
                         </form>
                     </div>

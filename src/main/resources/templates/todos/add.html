@@ -21,7 +21,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <form action="/todos/add" method="POST">
+                        <form action="/todos/add" method="POST" th:object="${todo}">
                             <div class="mb-3">
                                 <label for="title" class="form-label">Todo</label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="Todo content">
